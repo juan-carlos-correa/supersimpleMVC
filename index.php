@@ -16,7 +16,7 @@ $router = new Router();
 $controladorString = $router->getControlador();
 $metodoString =  $router->getMetodo();
 
-if($controladorString == null){
+if(!$controladorString){
     exit("No se ha configurado el controlador default");
 }
 
@@ -27,7 +27,7 @@ include_once ("app/controladores/".$controladorString.".php");
 //CREAR NUEVA INSTANCIA DE LA CLASE
 $claseControlador = new $controladorString();
 
-if(method_exists($claseControlador,$metodoString) == TRUE){
+if(method_exists($claseControlador,$metodoString)){
     //EJECUTAR
     call_user_func_array(array(&$claseControlador, $metodoString), array());
 }else{
